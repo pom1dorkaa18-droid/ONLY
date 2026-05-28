@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CLXN ONLY</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#050505;
+    font-family:'Orbitron',sans-serif;
+    color:white;
+    overflow-x:hidden;
+    position:relative;
+}
+
+/* СВЕЧЕНИЕ */
+
+body::before,
+body::after{
+    content:'';
+    position:fixed;
+    width:300px;
+    height:100%;
+    top:0;
+    filter:blur(130px);
+    opacity:0.28;
+    z-index:-2;
+}
+
+body::before{
+    left:-150px;
+    background:#ff0000;
+}
+
+body::after{
+    right:-150px;
+    background:#ff0000;
+}
+
+/* HEADER */
+
+header{
+    width:100%;
+    padding:25px 8%;
+    position:fixed;
+    top:0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(0,0,0,0.45);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(255,0,0,0.15);
+    z-index:999;
+}
+
+.logo{
+    font-size:36px;
+    font-weight:800;
+    color:#ff2a2a;
+    text-shadow:
+    0 0 15px #ff0000,
+    0 0 35px #ff0000;
+    transition:0.4s;
+    cursor:pointer;
+}
+
+.logo:hover{
+    transform:scale(1.05);
+}
+
+nav{
+    display:flex;
+    gap:35px;
+}
+
+nav a{
+    text-decoration:none;
+    color:white;
+    font-size:14px;
+    transition:0.3s;
+    position:relative;
+}
+
+nav a::after{
+    content:'';
+    position:absolute;
+    left:0;
+    bottom:-6px;
+    width:0%;
+    height:2px;
+    background:#ff0000;
+    transition:0.3s;
+    box-shadow:0 0 12px #ff0000;
+}
+
+nav a:hover{
+    color:#ff3b3b;
+}
+
+nav a:hover::after{
+    width:100%;
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    text-align:center;
+    padding:0 20px;
+}
+
+.hero h1{
+    font-size:120px;
+    color:#ff2a2a;
+    text-shadow:
+    0 0 15px #ff0000,
+    0 0 40px #ff0000,
+    0 0 80px #ff0000;
+    animation:pulse 3s infinite;
+}
+
+.hero p{
+    margin-top:25px;
+    max-width:900px;
+    line-height:1.8;
+    color:#cfcfcf;
+    font-size:18px;
+}
+
+@keyframes pulse{
+
+    0%{
+        text-shadow:
+        0 0 10px #ff0000,
+        0 0 30px #ff0000;
+    }
+
+    50%{
+        text-shadow:
+        0 0 30px #ff0000,
+        0 0 70px #ff0000;
+    }
+
+    100%{
+        text-shadow:
+        0 0 10px #ff0000,
+        0 0 30px #ff0000;
+    }
+
+}
+
+.buttons{
+    display:flex;
+    gap:25px;
+    margin-top:45px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.btn{
+    padding:18px 42px;
+    border:2px solid #ff0000;
+    border-radius:15px;
+    text-decoration:none;
+    color:#ff3b3b;
+    transition:0.35s;
+    background:rgba(255,0,0,0.05);
+    position:relative;
+    overflow:hidden;
+}
+
+.btn::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:-120%;
+    width:100%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.2),
+        transparent
+    );
+    transition:0.6s;
+}
+
+.btn:hover::before{
+    left:120%;
+}
+
+.btn:hover{
+    transform:translateY(-6px);
+    background:#ff0000;
+    color:white;
+    box-shadow:
+    0 0 20px #ff0000,
+    0 0 45px #ff0000;
+}
+
+/* SECTIONS */
+
+.section{
+    padding:110px 8%;
+}
+
+.title{
+    text-align:center;
+    font-size:50px;
+    margin-bottom:70px;
+    color:#ff2a2a;
+    text-shadow:0 0 15px #ff0000;
+}
+
+/* CARDS */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,0,0,0.15);
+    padding:35px;
+    border-radius:24px;
+    transition:0.4s;
+    backdrop-filter:blur(10px);
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    border-color:#ff0000;
+    box-shadow:
+    0 0 25px rgba(255,0,0,0.25);
+}
+
+.card h3{
+    color:#ff3b3b;
+    margin-bottom:20px;
+    font-size:24px;
+}
+
+.card p{
+    color:#cfcfcf;
+    line-height:1.8;
+    font-size:15px;
+}
+
+/* TEAM */
+
+.team{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+.member{
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,0,0,0.15);
+    border-radius:24px;
+    padding:35px;
+    text-align:center;
+    transition:0.4s;
+}
+
+.member:hover{
+    transform:translateY(-8px) scale(1.02);
+    border-color:#ff0000;
+    box-shadow:
+    0 0 25px rgba(255,0,0,0.25);
+}
+
+.member h2{
+    color:#ff3b3b;
+    margin-bottom:12px;
+}
+
+.member p{
+    color:#bdbdbd;
+}
+
+/* CLAN INFO */
+
+.info-box{
+    margin-top:60px;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,0,0,0.15);
+    border-radius:25px;
+    padding:50px;
+    text-align:center;
+    transition:0.4s;
+}
+
+.info-box:hover{
+    box-shadow:
+    0 0 30px rgba(255,0,0,0.25);
+}
+
+.info-box h2{
+    color:#ff2a2a;
+    margin-bottom:25px;
+    font-size:42px;
+}
+
+.info-box p{
+    line-height:2;
+    color:#d0d0d0;
+}
+
+/* FOOTER */
+
+footer{
+    padding:40px;
+    text-align:center;
+    border-top:1px solid rgba(255,0,0,0.15);
+    background:rgba(0,0,0,0.45);
+}
+
+footer p{
+    color:#808080;
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#050505;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#ff0000;
+    border-radius:20px;
+    box-shadow:0 0 10px #ff0000;
+}
+
+/* MOBILE */
+
+@media(max-width:850px){
+
+    .hero h1{
+        font-size:70px;
+    }
+
+    .title{
+        font-size:38px;
+    }
+
+}
+
+@media(max-width:600px){
+
+    header{
+        flex-direction:column;
+        gap:20px;
+    }
+
+    nav{
+        gap:15px;
+    }
+
+    .hero h1{
+        font-size:52px;
+    }
+
+}
+
+</style>
+</head>
+<body>
+
+<header>
+
+    <div class="logo">CLXN ONLY</div>
+
+    <nav>
+        <a href="#about">О КЛАНЕ</a>
+        <a href="#team">СОСТАВ</a>
+        <a href="#info">ИНФО</a>
+    </nav>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <h1>CLXN ONLY</h1>
+
+    <p>
+        Доминирующий Rust клан с сильным PvP составом,
+        организованными рейдами и жестким контролем территорий.
+        Мы не играем ради количества — мы играем ради победы.
+    </p>
+
+    <div class="buttons">
+
+        <a href="https://discord.gg/SJCQ7KeBxp" target="_blank" class="btn">
+            DISCORD
+        </a>
+
+        <a href="https://t.me/" target="_blank" class="btn">
+            TELEGRAM
+        </a>
+
+    </div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section class="section" id="about">
+
+    <h2 class="title">О КЛАНЕ</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>PVP MACHINE</h3>
+
+            <p>
+                CLXN ONLY специализируется на жестком PvP,
+                контроле серверов и уничтожении противников.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>ORGANIZED TEAM</h3>
+
+            <p>
+                Полная координация действий, распределение ролей
+                и командная игра на высшем уровне.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>DOMINATION</h3>
+
+            <p>
+                Наша цель — доминировать на сервере,
+                контролировать ресурсы и уничтожать врагов.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- TEAM -->
+
+<section class="section" id="team">
+
+    <h2 class="title">СОСТАВ КЛАНА</h2>
+
+    <div class="team">
+
+        <div class="member">
+            <h2>OWNER</h2>
+            <p>brigs57</p>
+        </div>
+
+        <div class="member">
+            <h2>CO-OWNER</h2>
+            <p>14992020</p>
+        </div>
+
+        <div class="member">
+            <h2>MAIN PLAYER</h2>
+            <p>Hadjim</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- INFO -->
+
+<section class="section" id="info">
+
+    <h2 class="title">CLXN INFO</h2>
+
+    <div class="info-box">
+
+        <h2>CLXN ONLY</h2>
+
+        <p>
+            SERVER: MODDED UNLIMITED <br><br>
+
+            LEADER: brigs57 <br><br>
+
+            DISCORD:
+            <a href="https://discord.gg/SJCQ7KeBxp"
+            target="_blank"
+            style="color:#ff3b3b;text-decoration:none;">
+            https://discord.gg/SJCQ7KeBxp
+            </a>
+
+            <br><br>
+
+            TELEGRAM:
+            <a href="https://t.me/"
+            target="_blank"
+            style="color:#ff3b3b;text-decoration:none;">
+            https://t.me/
+            </a>
+
+            <br><br>
+
+            STATUS: ACTIVE
+        </p>
+
+    </div>
+
+</section>
+
+<footer>
+
+    <p>
+        © 2026 CLXN ONLY — ALL RIGHTS RESERVED
+    </p>
+
+</footer>
+
+</body>
+</html>
